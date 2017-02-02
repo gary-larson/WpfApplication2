@@ -24,5 +24,16 @@ namespace WpfApplication2
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            WpfApplication2.DNDDataSet dNDDataSet = ((WpfApplication2.DNDDataSet)(this.FindResource("dNDDataSet")));
+            // Load data into the table Spells. You can modify this code as needed.
+            WpfApplication2.DNDDataSetTableAdapters.SpellsTableAdapter dNDDataSetSpellsTableAdapter = new WpfApplication2.DNDDataSetTableAdapters.SpellsTableAdapter();
+            dNDDataSetSpellsTableAdapter.Fill(dNDDataSet.Spells);
+            System.Windows.Data.CollectionViewSource spellsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("spellsViewSource")));
+            spellsViewSource.View.MoveCurrentToFirst();
+        }
     }
 }
